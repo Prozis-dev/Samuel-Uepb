@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
-app.use(express.json()); // Para processar o corpo das requisições como JSON
+app.use(express.json());
 
-// Banco de dados em memória (array de animes)
 let animes = [
     {
         id: 1,
@@ -12,12 +11,10 @@ let animes = [
     },
 ];
 
-// Listar todos os animes
 app.get("/animes", (req, res) => {
     res.json(animes);
 });
 
-// Listar um anime por ID
 app.get("/animes/:id", (req, res) => {
     const anime = animes.find((a) => a.id === parseInt(req.params.id));
     if (!anime) {
@@ -26,11 +23,9 @@ app.get("/animes/:id", (req, res) => {
     res.json(anime);
 });
 
-// Criar um novo anime
 app.post("/animes", (req, res) => {
     const { name, genre, studio } = req.body;
 
-    // Validação
     if (!name || !genre || !studio) {
         return res
             .status(400)
@@ -38,7 +33,7 @@ app.post("/animes", (req, res) => {
     }
 
     const newAnime = {
-        id: animes.length + 1, // Geração de ID automático
+        id: animes.length + 1,
         name,
         genre,
         studio,
@@ -48,7 +43,6 @@ app.post("/animes", (req, res) => {
     res.status(201).json(newAnime);
 });
 
-// Atualizar um anime por ID
 app.put("/animes/:id", (req, res) => {
     const { name, genre, studio } = req.body;
     const anime = animes.find((a) => a.id === parseInt(req.params.id));
@@ -57,7 +51,6 @@ app.put("/animes/:id", (req, res) => {
         return res.status(404).send("Anime não encontrado.");
     }
 
-    // Validação
     if (!name || !genre || !studio) {
         return res
             .status(400)
@@ -71,7 +64,6 @@ app.put("/animes/:id", (req, res) => {
     res.json(anime);
 });
 
-// Deletar um anime por ID
 app.delete("/animes/:id", (req, res) => {
     const index = animes.findIndex((a) => a.id === parseInt(req.params.id));
     if (index === -1) {
