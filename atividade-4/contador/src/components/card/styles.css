@@ -1,0 +1,40 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid #6c757d;
+    width: fit-content;
+    padding: 60px;
+    color: #f8f9fa;
+    background-color: #102942;
+    border-radius: 12px;
+}
+
+.card-main {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.card-main-button {
+    background-color: #ffc107;
+    color: #343a40;
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-main-button:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.card-main-button:active {
+    background-color: #d39e00;
+    transform: scale(1);
+}
